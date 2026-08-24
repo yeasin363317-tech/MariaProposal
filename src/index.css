@@ -1,0 +1,809 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   DESIGN SYSTEM — Maria Proposal Microsite
+   Soft Blush Pink + Warm White + Subtle Rose
+   ============================================================ */
+
+@layer base {
+  :root {
+    /* Core palette */
+    --bg:           0 0% 99%;
+    --bg-warm:      14 40% 97%;
+    --surface:      0 0% 100%;
+    --surface-alt:  350 40% 98%;
+    --primary:      345 65% 68%;
+    --primary-deep: 345 60% 55%;
+    --accent:       350 55% 82%;
+    --accent-light: 350 60% 92%;
+    --rose:         340 70% 72%;
+    --rose-dark:    340 55% 55%;
+    --text:         220 20% 20%;
+    --text-soft:    220 12% 45%;
+    --text-muted:   220 8% 65%;
+    --border:       345 35% 88%;
+    --glow:         345 80% 75%;
+
+    /* shadcn compatibility */
+    --background: 0 0% 99%;
+    --foreground: 220 20% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 20%;
+    --primary-shadcn: 345 65% 68%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 350 40% 96%;
+    --secondary-foreground: 220 20% 20%;
+    --muted: 350 30% 95%;
+    --muted-foreground: 220 8% 55%;
+    --accent-shadcn: 350 55% 82%;
+    --accent-foreground: 220 20% 20%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 345 35% 88%;
+    --input: 345 35% 88%;
+    --ring: 345 65% 68%;
+    --radius: 1rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    @apply bg-background text-foreground;
+    font-family: 'Noto Sans Bengali', 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  body {
+    background: hsl(var(--bg-warm));
+    min-height: 100dvh;
+  }
+
+  #root {
+    min-height: 100dvh;
+    position: relative;
+  }
+}
+
+/* ============================================================
+   FONT UTILITIES
+   ============================================================ */
+
+.font-bengali {
+  font-family: 'Noto Sans Bengali', sans-serif;
+}
+
+.font-display {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+}
+
+/* ============================================================
+   BACKGROUND GRADIENT MESH
+   ============================================================ */
+
+.bg-mesh {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, hsla(345,80%,88%,0.35) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, hsla(350,70%,85%,0.3) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, hsla(14,60%,95%,0.4) 0%, transparent 60%),
+    hsl(var(--bg-warm));
+}
+
+/* ============================================================
+   PAGE SYSTEM
+   ============================================================ */
+
+.page-wrapper {
+  position: relative;
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem;
+  overflow: hidden;
+}
+
+.page-container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* ============================================================
+   PAGE TRANSITIONS
+   ============================================================ */
+
+.page-enter {
+  animation: pageEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.page-exit {
+  animation: pageExit 0.35s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.985);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes pageExit {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.99);
+    filter: blur(4px);
+  }
+}
+
+/* ============================================================
+   PORTRAIT FRAMES
+   ============================================================ */
+
+.portrait-lg {
+  width: min(240px, 62vw);
+  height: min(240px, 62vw);
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  box-shadow:
+    0 0 0 4px hsla(345,65%,85%,1),
+    0 0 0 8px hsla(345,55%,90%,0.7),
+    0 16px 48px hsla(345,60%,60%,0.2),
+    0 4px 16px hsla(345,60%,60%,0.15);
+  animation: portraitFloat 5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.portrait-md {
+  width: min(120px, 34vw);
+  height: min(120px, 34vw);
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  box-shadow:
+    0 0 0 3px hsla(345,65%,85%,1),
+    0 0 0 6px hsla(345,55%,90%,0.6),
+    0 8px 24px hsla(345,60%,60%,0.18);
+  flex-shrink: 0;
+}
+
+.portrait-sm {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow:
+    0 0 0 2px hsla(345,65%,85%,1),
+    0 4px 12px hsla(345,60%,60%,0.15);
+}
+
+.portrait-proposal {
+  width: min(160px, 42vw);
+  height: min(160px, 42vw);
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  box-shadow:
+    0 0 0 3px hsla(345,65%,82%,1),
+    0 0 0 7px hsla(345,55%,90%,0.65),
+    0 0 32px hsla(345,70%,70%,0.25),
+    0 12px 32px hsla(345,60%,60%,0.18);
+  flex-shrink: 0;
+}
+
+.portrait-celebration {
+  width: min(200px, 52vw);
+  height: min(200px, 52vw);
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  box-shadow:
+    0 0 0 4px hsla(345,70%,80%,1),
+    0 0 0 9px hsla(345,60%,88%,0.7),
+    0 0 48px hsla(345,80%,70%,0.4),
+    0 16px 48px hsla(345,60%,55%,0.25);
+  animation: portraitGlow 3s ease-in-out infinite, portraitFloat 5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.portrait-calm {
+  width: min(110px, 30vw);
+  height: min(110px, 30vw);
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 2px hsla(220,15%,80%,1),
+    0 4px 16px hsla(220,15%,50%,0.12);
+  flex-shrink: 0;
+  filter: grayscale(25%);
+}
+
+.portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+@keyframes portraitFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes portraitGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 0 4px hsla(345,70%,80%,1),
+      0 0 0 9px hsla(345,60%,88%,0.7),
+      0 0 48px hsla(345,80%,70%,0.4),
+      0 16px 48px hsla(345,60%,55%,0.25);
+  }
+  50% {
+    box-shadow:
+      0 0 0 6px hsla(345,70%,80%,1),
+      0 0 0 12px hsla(345,60%,88%,0.5),
+      0 0 72px hsla(345,80%,70%,0.6),
+      0 16px 48px hsla(345,60%,55%,0.3);
+  }
+}
+
+/* ============================================================
+   GLASS CARDS
+   ============================================================ */
+
+.glass-card {
+  background: hsla(0,0%,100%,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid hsla(345,40%,88%,0.7);
+  border-radius: 1.5rem;
+  box-shadow:
+    0 4px 24px hsla(345,40%,70%,0.1),
+    0 1px 4px hsla(345,40%,70%,0.08);
+}
+
+.letter-card {
+  background: hsla(14,50%,99%,0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid hsla(345,35%,88%,0.6);
+  border-radius: 1.25rem;
+  box-shadow:
+    0 8px 40px hsla(345,40%,65%,0.12),
+    0 2px 8px hsla(345,40%,65%,0.08),
+    inset 0 1px 0 hsla(0,0%,100%,0.9);
+  position: relative;
+  overflow: hidden;
+}
+
+.letter-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    hsl(345,65%,78%) 30%,
+    hsl(350,55%,72%) 50%,
+    hsl(345,65%,78%) 70%,
+    transparent 100%
+  );
+  border-radius: 1.25rem 1.25rem 0 0;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2.25rem;
+  background: linear-gradient(135deg, hsl(345,65%,68%), hsl(340,60%,60%));
+  color: white;
+  font-family: 'Noto Sans Bengali', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  min-height: 52px;
+  min-width: 140px;
+  box-shadow:
+    0 4px 20px hsla(345,65%,60%,0.35),
+    0 1px 4px hsla(345,65%,60%,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 28px hsla(345,65%,60%,0.4),
+    0 2px 8px hsla(345,65%,60%,0.25);
+  background: linear-gradient(135deg, hsl(345,68%,65%), hsl(340,62%,58%));
+}
+
+.btn-primary:active {
+  transform: translateY(0px) scale(0.98);
+  box-shadow:
+    0 2px 12px hsla(345,65%,60%,0.3),
+    0 1px 3px hsla(345,65%,60%,0.15);
+}
+
+.btn-primary:focus-visible {
+  outline: 3px solid hsl(345,65%,68%);
+  outline-offset: 3px;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.75rem;
+  background: hsla(0,0%,100%,0.8);
+  color: hsl(var(--text-soft));
+  font-family: 'Noto Sans Bengali', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 999px;
+  border: 1px solid hsl(var(--border));
+  cursor: pointer;
+  min-height: 48px;
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.btn-secondary:hover {
+  background: hsl(var(--surface));
+  border-color: hsl(var(--accent));
+  color: hsl(var(--primary-deep));
+}
+
+.btn-yes {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2.5rem;
+  background: linear-gradient(135deg, hsl(345,65%,68%), hsl(340,60%,58%));
+  color: white;
+  font-family: 'Noto Sans Bengali', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  min-height: 56px;
+  min-width: 140px;
+  box-shadow:
+    0 6px 24px hsla(345,65%,60%,0.4),
+    0 2px 8px hsla(345,65%,60%,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.btn-yes:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 10px 32px hsla(345,65%,60%,0.45),
+    0 3px 10px hsla(345,65%,60%,0.25);
+}
+
+.btn-no {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  background: hsla(0,0%,100%,0.75);
+  color: hsl(220,12%,55%);
+  font-family: 'Noto Sans Bengali', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 999px;
+  border: 1px solid hsl(220,15%,85%);
+  cursor: pointer;
+  min-height: 52px;
+  min-width: 120px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.btn-no:hover {
+  background: hsla(0,0%,100%,0.9);
+}
+
+.btn-no.moving {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+
+.label-for {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  font-weight: 400;
+  color: hsl(var(--primary));
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.heading-hero {
+  font-family: 'Noto Sans Bengali', sans-serif;
+  font-size: clamp(1.35rem, 5.5vw, 1.85rem);
+  font-weight: 700;
+  color: hsl(var(--text));
+  line-height: 1.45;
+  text-align: center;
+}
+
+.heading-page {
+  font-family: 'Noto Sans Bengali', sans-serif;
+  font-size: clamp(1.2rem, 5vw, 1.65rem);
+  font-weight: 700;
+  color: hsl(var(--text));
+  line-height: 1.5;
+  text-align: center;
+}
+
+.subtext {
+  font-family: 'Noto Sans Bengali', sans-serif;
+  font-size: clamp(0.875rem, 3.5vw, 1rem);
+  font-weight: 400;
+  color: hsl(var(--text-soft));
+  line-height: 1.85;
+  text-align: center;
+}
+
+.letter-body p {
+  font-family: 'Noto Sans Bengali', sans-serif;
+  font-size: clamp(0.9rem, 3.6vw, 1.05rem);
+  font-weight: 400;
+  color: hsl(var(--text));
+  line-height: 1.95;
+  margin-bottom: 1.1rem;
+}
+
+.letter-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================================
+   DECORATIVE ELEMENTS
+   ============================================================ */
+
+.divider-rose {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, hsl(var(--accent)), transparent);
+  border-radius: 999px;
+  margin: 0 auto;
+}
+
+.badge-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 1rem;
+  background: hsla(345,65%,70%,0.12);
+  border: 1px solid hsla(345,65%,70%,0.3);
+  border-radius: 999px;
+  color: hsl(var(--primary-deep));
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   PARTICLES CANVAS
+   ============================================================ */
+
+.particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================================
+   FLOATING HEARTS
+   ============================================================ */
+
+.hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -40px;
+  font-size: 1.2rem;
+  opacity: 0;
+  animation: floatHeart linear forwards;
+}
+
+@keyframes floatHeart {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.5) rotate(0deg);
+  }
+  10% { opacity: 0.8; }
+  80% { opacity: 0.6; }
+  100% {
+    opacity: 0;
+    transform: translateY(-100vh) scale(1.2) rotate(20deg);
+  }
+}
+
+/* ============================================================
+   LETTER HEADER ROW
+   ============================================================ */
+
+.letter-header {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid hsla(345,40%,88%,0.6);
+}
+
+.letter-salutation {
+  font-family: 'Noto Sans Bengali', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: hsl(var(--primary-deep));
+  margin-bottom: 0;
+}
+
+.letter-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8rem;
+  color: hsl(var(--text-muted));
+  font-style: italic;
+}
+
+/* ============================================================
+   ANIMATIONS — ENTRANCE
+   ============================================================ */
+
+.fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.fade-in-delay-1 {
+  opacity: 0;
+  animation: fadeIn 0.6s ease 0.2s forwards;
+}
+
+.fade-in-delay-2 {
+  opacity: 0;
+  animation: fadeIn 0.6s ease 0.45s forwards;
+}
+
+.fade-in-delay-3 {
+  opacity: 0;
+  animation: fadeIn 0.6s ease 0.7s forwards;
+}
+
+.fade-in-delay-4 {
+  opacity: 0;
+  animation: fadeIn 0.6s ease 0.95s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   CELEBRATION OVERLAY
+   ============================================================ */
+
+.celebration-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center,
+    hsla(345,80%,80%,0.25) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 2;
+  animation: celebrationPulse 2s ease-in-out infinite;
+}
+
+@keyframes celebrationPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: hsl(345,70%,72%);
+  animation: sparkleFade linear forwards;
+}
+
+@keyframes sparkleFade {
+  0% { opacity: 1; transform: scale(0); }
+  50% { opacity: 0.8; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.5) translate(var(--tx), var(--ty)); }
+}
+
+/* ============================================================
+   PROPOSAL BUTTONS LAYOUT
+   ============================================================ */
+
+.proposal-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.875rem;
+  width: 100%;
+}
+
+/* ============================================================
+   SOFT BLOB BACKGROUNDS
+   ============================================================ */
+
+.blob-1 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, hsla(345,70%,85%,0.25), transparent 70%);
+  top: -80px;
+  right: -80px;
+  animation: blobDrift 12s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.blob-2 {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: radial-gradient(circle, hsla(350,60%,80%,0.2), transparent 70%);
+  bottom: -60px;
+  left: -60px;
+  animation: blobDrift 16s ease-in-out infinite reverse;
+  pointer-events: none;
+}
+
+@keyframes blobDrift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(20px, -15px) scale(1.05); }
+  66% { transform: translate(-15px, 10px) scale(0.97); }
+}
+
+/* ============================================================
+   NO STATE
+   ============================================================ */
+
+.no-state-heading {
+  font-family: 'Noto Sans Bengali', sans-serif;
+  font-size: clamp(1.3rem, 5vw, 1.6rem);
+  font-weight: 700;
+  color: hsl(220,20%,35%);
+  text-align: center;
+}
+
+.no-state-text {
+  font-family: 'Noto Sans Bengali', sans-serif;
+  font-size: clamp(0.9rem, 3.5vw, 1.05rem);
+  color: hsl(220,12%,50%);
+  line-height: 1.9;
+  text-align: center;
+}
+
+/* ============================================================
+   FINAL PAGE
+   ============================================================ */
+
+.final-message {
+  font-family: 'Noto Sans Bengali', sans-serif;
+  font-size: clamp(0.9rem, 3.6vw, 1.05rem);
+  color: hsl(var(--text));
+  line-height: 1.95;
+  text-align: center;
+}
+
+.final-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 4vw, 1.2rem);
+  font-style: italic;
+  color: hsl(var(--primary-deep));
+  text-align: center;
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .portrait-lg, .portrait-celebration {
+    animation: none !important;
+  }
+  .floating-heart, .sparkle, .blob-1, .blob-2 {
+    display: none !important;
+  }
+  .particles-canvas { display: none !important; }
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: hsla(345,50%,75%,0.4);
+  border-radius: 2px;
+}
