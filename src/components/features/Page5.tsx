@@ -80,15 +80,27 @@ const Page5 = ({ onRestart }: Page5Props) => {
           <h1
             className="heading-hero"
             style={{
-              background: "linear-gradient(135deg, hsl(345,65%,55%), hsl(340,60%,65%))",
+              background: "linear-gradient(135deg, hsl(345,65%,52%), hsl(340,60%,62%))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
               marginBottom: "0.5rem",
+              fontSize: "clamp(1.45rem, 6vw, 2rem)",
             }}
           >
-            Thank You, Maria ❤️
+            I Love You, Maria ❤️
           </h1>
+          <p
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "clamp(0.9rem, 3.5vw, 1.1rem)",
+              fontStyle: "italic",
+              color: "hsl(220,12%,55%)",
+              marginTop: "0.35rem",
+            }}
+          >
+            Thank you for giving me a chance.
+          </p>
         </div>
 
         <div className="divider-rose fade-in-delay-2" />
@@ -96,23 +108,57 @@ const Page5 = ({ onRestart }: Page5Props) => {
         {/* Final message */}
         <div
           className="glass-card fade-in-delay-3"
-          style={{ padding: "1.75rem 1.5rem", width: "100%" }}
+          style={{ padding: "1.75rem 1.5rem", width: "100%", position: "relative", overflow: "hidden" }}
         >
+          {/* Subtle corner decoration */}
+          <span
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              top: "0.75rem",
+              right: "0.875rem",
+              fontSize: "0.9rem",
+              opacity: 0.35,
+              animation: "page5HeartPulse 3s ease-in-out infinite",
+            }}
+          >
+            ❤️
+          </span>
+          <span
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              bottom: "0.75rem",
+              left: "0.875rem",
+              fontSize: "0.75rem",
+              opacity: 0.25,
+              animation: "page5HeartPulse 3.5s ease-in-out 1s infinite",
+            }}
+          >
+            💕
+          </span>
+
           <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
             <p className="final-message">
-              তোমার এই উত্তরটা আমার কাছে অনেক বড় কিছু। ছোট্ট একটা "হ্যাঁ", কিন্তু
-              এই মুহূর্তে এটাই যথেষ্ট।
+              তোমার এই উত্তরটা আমার কাছে অনেক বড় কিছু। একটা ছোট্ট
+              "হ্যাঁ", কিন্তু এই মুহূর্তে এটাই আমার সবচেয়ে বড় পাওয়া।
             </p>
 
             <p className="final-message">
-              আমি চাই না কোনো কিছু তাড়াহুড়ো করে হোক। একে অপরকে জানতে সময় লাগে,
-              এবং সেই সময়টা নেওয়াই উচিত। কথা বলতে বলতে, বুঝতে বুঝতে — এভাবেই
-              এগোতে চাই।
+              আমি চাই না কোনো কিছু তাড়াহুড়ো করে হোক। একে অপরকে জানতে
+              সময় লাগে — সেই সময়টা নেওয়াই উচিত। কথা বলতে বলতে, বুঝতে
+              বুঝতে এভাবেই এগোতে চাই।
             </p>
 
             <p className="final-message">
-              তোমার উপর কোনো চাপ নেই। বিশ্বাস এবং সম্মান — এই দুটোই আমার কাছে
-              সবচেয়ে জরুরি। যা কিছু হোক, সেটা যেন স্বাভাবিকভাবেই হয়।
+              তোমার উপর কোনো চাপ নেই। বিশ্বাস এবং সম্মান — এই দুটোই
+              আমার কাছে সবচেয়ে জরুরি। ভবিষ্যতে যা কিছু হোক, সেটা যেন
+              স্বাভাবিকভাবেই হয়।
+            </p>
+
+            <p className="final-message" style={{ fontWeight: 500, color: "hsl(345,55%,50%)" }}>
+              এখন থেকে তোমাকে আরো ভালো করে জানার সুযোগ পাব — এটাই
+              আমার কাছে সবচেয়ে বড় উপহার।
             </p>
           </div>
         </div>

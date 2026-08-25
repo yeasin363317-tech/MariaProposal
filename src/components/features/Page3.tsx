@@ -85,6 +85,30 @@ const Page3 = ({ onContinue }: Page3Props) => {
               — তোমার একজন শুভাকাঙ্ক্ষী
             </p>
           </div>
+
+          {/* Visual separator before confession */}
+          <div
+            style={{
+              margin: "1.5rem 0 1.25rem",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.75rem",
+            }}
+          >
+            <div style={{ flex: 1, height: "1px", background: "hsla(345,40%,88%,0.7)" }} />
+            <span style={{ fontSize: "0.8rem", color: "hsla(345,55%,70%,0.9)", fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}>❤️</span>
+            <div style={{ flex: 1, height: "1px", background: "hsla(345,40%,88%,0.7)" }} />
+          </div>
+
+          {/* Intimate confession */}
+          <div className="love-confession">
+            <p className="love-confession-text">
+              Maria, আমি তোমাকে ভালোবাসি। ❤️
+            </p>
+            <p className="love-confession-sub">
+              কথাটা অনেকদিন ধরে মনের মধ্যে ছিল। আজ আর লুকাতে ইচ্ছে হলো না।
+            </p>
+          </div>
         </div>
 
         {/* Continue button */}

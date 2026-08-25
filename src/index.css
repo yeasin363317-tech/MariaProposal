@@ -779,6 +779,151 @@
 }
 
 /* ============================================================
+   LOVE CONFESSION (Page 3)
+   ============================================================ */
+
+.love-confession {
+  text-align: center;
+  padding: 0.25rem 0.5rem 0.5rem;
+  animation: loveConfessionReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+  animation-delay: 0.15s;
+}
+
+.love-confession-text {
+  font-family: 'Noto Sans Bengali', sans-serif;
+  font-size: clamp(1.05rem, 4.5vw, 1.3rem);
+  font-weight: 700;
+  color: hsl(345,60%,52%);
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.01em;
+}
+
+.love-confession-sub {
+  font-family: 'Noto Sans Bengali', sans-serif;
+  font-size: clamp(0.82rem, 3.2vw, 0.95rem);
+  font-weight: 400;
+  color: hsl(220,12%,52%);
+  line-height: 1.85;
+  font-style: italic;
+}
+
+@keyframes loveConfessionReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* ============================================================
+   YES BUTTON PULSE (Page 4)
+   ============================================================ */
+
+.btn-yes-pulse {
+  animation: yesPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes yesPulse {
+  0%, 100% {
+    box-shadow:
+      0 6px 24px hsla(345,65%,60%,0.4),
+      0 2px 8px hsla(345,65%,60%,0.2);
+  }
+  50% {
+    box-shadow:
+      0 8px 32px hsla(345,65%,60%,0.55),
+      0 0 0 6px hsla(345,65%,70%,0.18),
+      0 2px 8px hsla(345,65%,60%,0.25);
+  }
+}
+
+.btn-yes-pulse:hover {
+  animation: none;
+}
+
+/* ============================================================
+   LOVE REVEAL OVERLAY (Index transition)
+   ============================================================ */
+
+.love-reveal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: hsla(345,60%,98%,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  animation: loveRevealIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes loveRevealIn {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.love-reveal-inner {
+  text-align: center;
+  animation: loveRevealTextIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+@keyframes loveRevealTextIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.love-reveal-text {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: clamp(1.8rem, 7vw, 2.6rem);
+  font-weight: 600;
+  font-style: italic;
+  color: hsl(345,62%,50%);
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.35rem;
+}
+
+.love-reveal-heart {
+  font-size: clamp(2rem, 7vw, 2.8rem);
+  animation: heartBeat 0.7s ease-in-out 0.5s infinite alternate;
+  display: inline-block;
+}
+
+@keyframes heartBeat {
+  from { transform: scale(1); }
+  to   { transform: scale(1.25); }
+}
+
+/* ============================================================
+   PAGE 5 HEART PULSE
+   ============================================================ */
+
+@keyframes page5HeartPulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.3); opacity: 0.55; }
+}
+
+/* ============================================================
    REDUCED MOTION
    ============================================================ */
 
@@ -795,6 +940,12 @@
     display: none !important;
   }
   .particles-canvas { display: none !important; }
+  .love-confession { animation: none !important; opacity: 1 !important; }
+  .btn-yes-pulse { animation: none !important; }
+  .love-reveal-overlay { animation: none !important; }
+  .love-reveal-inner { animation: none !important; }
+  .love-reveal-heart { animation: none !important; }
+  .page5HeartPulse { animation: none !important; }
 }
 
 /* ============================================================

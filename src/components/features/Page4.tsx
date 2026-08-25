@@ -71,23 +71,41 @@ const Page4 = ({ onYes, onNo }: Page4Props) => {
           <MariaPortrait variant="proposal" />
         </div>
 
-        {/* Heading */}
+        {/* Heading card */}
         <div className="fade-in-delay-1 glass-card" style={{ padding: "1.75rem 1.5rem", width: "100%", textAlign: "center" }}>
-          <h2 className="heading-page" style={{ marginBottom: "1rem" }}>
-            Maria, তুমি কি আমাকে একটা সুযোগ দেবে?
+          {/* Emotional declaration */}
+          <p
+            style={{
+              fontFamily: "'Noto Sans Bengali', sans-serif",
+              fontSize: "clamp(1.15rem, 5vw, 1.55rem)",
+              fontWeight: 700,
+              color: "hsl(345,60%,52%)",
+              lineHeight: 1.5,
+              marginBottom: "0.5rem",
+              animation: "fadeIn 0.7s ease 0.3s both",
+            }}
+          >
+            Maria, আমি তোমাকে ভালোবাসি। ❤️
+          </p>
+
+          <div className="divider-rose" style={{ marginBottom: "1rem", marginTop: "0.75rem" }} />
+
+          {/* Proposal question */}
+          <h2 className="heading-page" style={{ marginBottom: "1rem", fontSize: "clamp(1rem, 4.2vw, 1.3rem)" }}>
+            তুমি কি আমাকে একটা সুযোগ দেবে?
           </h2>
-          <div className="divider-rose" style={{ marginBottom: "1rem" }} />
+
           <p className="subtext">
-            কোনো চাপ নয়।<br />
-            শুধু আমার মনের কথাটা জানালাম।<br />
-            সিদ্ধান্তটা তোমার।
+            কোনো চাপ নেই।<br />
+            শুধু আমার মনের কথাটা তোমাকে জানাতে চেয়েছি।<br />
+            সিদ্ধান্তটা পুরোপুরি তোমার।
           </p>
         </div>
 
         {/* Buttons */}
         <div className="fade-in-delay-2 proposal-buttons">
           <button
-            className="btn-yes"
+            className="btn-yes btn-yes-pulse"
             onClick={onYes}
             aria-label="হ্যাঁ"
           >

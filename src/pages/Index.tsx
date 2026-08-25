@@ -12,6 +12,7 @@ type PageId = "page1" | "page2" | "page3" | "page4" | "page5" | "no-state";
 const Index = () => {
   const [currentPage, setCurrentPage] = useState<PageId>("page1");
   const [transitioning, setTransitioning] = useState(false);
+  const [showLoveReveal, setShowLoveReveal] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const transitionTo = useCallback((nextPage: PageId) => {
@@ -32,10 +33,19 @@ const Index = () => {
         el.classList.add("page-enter");
         setTimeout(() => el.classList.remove("page-enter"), 600);
       }
-      // Scroll to top on page change
       window.scrollTo({ top: 0, behavior: "instant" });
     }, 320);
   }, [transitioning]);
+
+  // YES flow: show the love reveal overlay, then navigate to page5
+  const handleYes = useCallback(() => {
+    if (transitioning) return;
+    setShowLoveReveal(true);
+    setTimeout(() => {
+      setShowLoveReveal(false);
+      transitionTo("page5");
+    }, 1800);
+  }, [transitioning, transitionTo]);
 
   const renderPage = () => {
     switch (currentPage) {
@@ -48,7 +58,7 @@ const Index = () => {
       case "page4":
         return (
           <Page4
-            onYes={() => transitionTo("page5")}
+            onYes={handleYes}
             onNo={() => transitionTo("no-state")}
           />
         );
@@ -70,6 +80,20 @@ const Index = () => {
       <div ref={containerRef} style={{ position: "relative", zIndex: 5 }}>
         {renderPage()}
       </div>
+
+      {/* I Love You reveal overlay */}
+      {showLoveReveal && (
+        <div
+          className="love-reveal-overlay"
+          aria-live="polite"
+          aria-label="I Love You Maria"
+        >
+          <div className="love-reveal-inner">
+            <p className="love-reveal-text">I Love You, Maria</p>
+            <p className="love-reveal-heart">❤️</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
